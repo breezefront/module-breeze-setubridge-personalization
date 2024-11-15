@@ -82,6 +82,29 @@ Breeze integration with [SetuBridge Product Designer](https://store.setubridge.c
 
 ```
 
+`SetuBridge/Personalization/view/frontend/templates/customize_page.phtml`
+
+```diff
+             var iframeUrl="<?php echo $block->getBaseUrl() ?>personlisation/index.php?productID=<?php echo $block->getRequest()->getParam('product') ?>&display=productFront&itemId=<?php echo $block->getRequest()->getParam('itemId') ?>";
+
+             var self = $(this), _link = self.attr('data-href');
+-            var ifr=$('<iframe/>', {
++            var ifr=$('<iframe/>');
++            ifr.attr({
+                 id:'customize-iframe',
+                 src:iframeUrl,
+                 scrolling: 'yes',
+@@ -45,7 +46,7 @@
+
+                 }
+             });
+-            $('#customize-product-content').html(ifr);
++            $('#customize-product-content').html('').append(ifr);
+
+             window.closeProductDesignerPopup = function() {
+                 $(".close-product-designer-modal", window.parent.document ).click();
+
+```
 ## Installation
 
 ```bash
